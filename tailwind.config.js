@@ -43,6 +43,8 @@ export default {
 					navy: '#1E3A8A',
 					orange: '#F97316',
 					cream: '#FEF3C7',
+          'dark-navy': '#0a0f1e',
+          'deep-slate': '#1a2332'
 				},
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
@@ -82,7 +84,16 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+      animation: {
+        'pulse-glow': 'pulse-glow 3s ease-in-out infinite'
+      },
+      keyframes: {
+        'pulse-glow': {
+          '0%, 100%': { opacity: 0.3, transform: 'scale(1)' },
+          '50%': { opacity: 0.6, transform: 'scale(1.2)' }
+        }
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")]

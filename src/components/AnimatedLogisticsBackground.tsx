@@ -2,92 +2,113 @@ import React from 'react';
 import { motion } from 'framer-motion';
 export const AnimatedLogisticsBackground: React.FC = () => {
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <svg
         className="w-full h-full"
         viewBox="0 0 1000 1000"
         preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Animated Logistics Routes */}
+        {/* Smoother, Vibrant Logistics Paths */}
         <motion.path
-          d="M-50,200 C200,100 400,300 600,200 S900,100 1050,250"
+          d="M-50,200 C250,50 450,350 650,200 S950,50 1100,250"
           fill="transparent"
-          stroke="#1E3A8A"
+          stroke="#3b82f6"
           strokeWidth="2"
-          strokeDasharray="10,10"
+          strokeDasharray="15,10"
+          style={{ willChange: "transform" }}
           initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: 1, 
-            opacity: 0.3,
-            strokeDashoffset: [0, -100]
-          }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: "linear",
-            opacity: { duration: 2 }
-          }}
-        />
-        <motion.path
-          d="M-100,600 C150,500 350,800 600,650 S850,500 1100,700"
-          fill="transparent"
-          stroke="#F97316"
-          strokeWidth="1.5"
-          strokeDasharray="8,8"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ 
-            pathLength: 1, 
-            opacity: 0.2,
-            strokeDashoffset: [0, 100]
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity, 
-            ease: "linear",
-            opacity: { duration: 2 }
-          }}
-        />
-        {/* Floating Paper Airplane */}
-        <motion.g
           animate={{
-            x: [0, 1000],
-            y: [300, 200, 400, 300],
-            rotate: [0, -10, 10, 0]
+            pathLength: 1,
+            opacity: 0.4,
+            strokeDashoffset: [0, -200]
           }}
           transition={{
-            duration: 25,
+            duration: 12,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "linear",
+            opacity: { duration: 2 }
           }}
-          className="text-logistics-navy"
+        />
+        <motion.path
+          d="M-100,700 C200,600 400,900 700,750 S950,600 1200,800"
+          fill="transparent"
+          stroke="#fb923c"
+          strokeWidth="1.5"
+          strokeDasharray="10,12"
+          style={{ willChange: "transform" }}
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{
+            pathLength: 1,
+            opacity: 0.3,
+            strokeDashoffset: [0, 200]
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "linear",
+            opacity: { duration: 2 }
+          }}
+        />
+        {/* Orbiting Dots */}
+        {[1, 2, 3].map((i) => (
+          <motion.circle
+            key={`orbit-${i}`}
+            r={3 + i}
+            fill={i % 2 === 0 ? "#3b82f6" : "#fb923c"}
+            opacity="0.5"
+            style={{ willChange: "transform" }}
+            animate={{
+              cx: [400 + i * 50, 600 + i * 50, 400 + i * 50],
+              cy: [300, 500, 300],
+            }}
+            transition={{
+              duration: 10 + i * 5,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+        {/* Particles / Drifting Dust */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.circle
+            key={`particle-${i}`}
+            r={1.5}
+            cx={Math.random() * 1000}
+            cy={Math.random() * 1000}
+            fill="white"
+            style={{ willChange: "transform" }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.1, 0.4, 0.1],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 5 + Math.random() * 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+        {/* Floating Paper Airplane Refined */}
+        <motion.g
+          animate={{
+            x: [-100, 1100],
+            y: [400, 300, 500, 400],
+            rotate: [15, 5, 25, 15]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="text-white"
         >
           <path
-            d="M0,0 L20,10 L0,20 L5,10 Z"
+            d="M0,0 L24,12 L0,24 L6,12 Z"
             fill="currentColor"
-            opacity="0.6"
+            opacity="0.4"
           />
-        </motion.g>
-        {/* Sketched Clouds */}
-        <motion.g
-          initial={{ x: -100 }}
-          animate={{ x: 1100 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="text-logistics-navy"
-        >
-          <circle cx="100" cy="150" r="30" fill="currentColor" opacity="0.1" />
-          <circle cx="130" cy="150" r="40" fill="currentColor" opacity="0.1" />
-          <circle cx="160" cy="150" r="30" fill="currentColor" opacity="0.1" />
-        </motion.g>
-        <motion.g
-          initial={{ x: 1100 }}
-          animate={{ x: -200 }}
-          transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-          className="text-logistics-orange"
-        >
-          <circle cx="400" cy="750" r="20" fill="currentColor" opacity="0.05" />
-          <circle cx="430" cy="750" r="25" fill="currentColor" opacity="0.05" />
-          <circle cx="460" cy="750" r="20" fill="currentColor" opacity="0.05" />
         </motion.g>
       </svg>
     </div>
