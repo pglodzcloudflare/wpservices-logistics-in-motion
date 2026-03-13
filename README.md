@@ -1,6 +1,6 @@
 # WP Services Landing Page
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/pglodzcloudflare/wpservices-logistics-in-motion)
 
 A modern, full-stack landing page template built on Cloudflare Workers with a React frontend. Designed for high-performance, SEO-friendly service landing pages with built-in API routes, theming, and responsive UI components powered by shadcn/ui.
 
@@ -106,7 +106,7 @@ This builds the frontend assets and deploys the Worker.
 
 Configure your `wrangler.toml` or `wrangler.jsonc` with account bindings as needed.
 
-[cloudflarebutton]
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/pglodzcloudflare/wpservices-logistics-in-motion)
 
 ## Scripts
 
