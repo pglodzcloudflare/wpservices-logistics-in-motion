@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 export const AnimatedLogisticsBackground: React.FC = () => {
+  // Generate stable particle configuration to prevent flickering on re-renders
+  const particles = useMemo(() => {
+    return Array.from({ length: 20 }).map((_, i) => ({
+      id: i,
+      x: Math.random() * 1000,
+      y: Math.random() * 1000,
+      duration: 5 + Math.random() * 10,
+      delay: Math.random() * 5,
+      drift: -20 - Math.random() * 40,
+    }));
+  }, []);
   return (
     <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       <svg
@@ -69,29 +80,30 @@ export const AnimatedLogisticsBackground: React.FC = () => {
             }}
           />
         ))}
-        {/* Particles / Drifting Dust */}
-        {Array.from({ length: 20 }).map((_, i) => (
+        {/* Stabilized Particles */}
+        {particles.map((p) => (
           <motion.circle
-            key={`particle-${i}`}
+            key={`particle-${p.id}`}
             r={1.5}
-            cx={Math.random() * 1000}
-            cy={Math.random() * 1000}
+            cx={p.x}
+            cy={p.y}
             fill="white"
-            style={{ willChange: "transform" }}
+            style={{ willChange: "transform, opacity" }}
             animate={{
-              y: [0, -30, 0],
+              y: [0, p.drift, 0],
               opacity: [0.1, 0.4, 0.1],
               scale: [1, 1.2, 1]
             }}
             transition={{
-              duration: 5 + Math.random() * 10,
+              duration: p.duration,
               repeat: Infinity,
-              delay: Math.random() * 5,
+              delay: p.delay,
             }}
           />
         ))}
-        {/* Floating Paper Airplane Refined */}
+        {/* Floating Paper Airplane */}
         <motion.g
+          style={{ willChange: "transform" }}
           animate={{
             x: [-100, 1100],
             y: [400, 300, 500, 400],
